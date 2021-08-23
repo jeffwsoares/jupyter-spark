@@ -1,0 +1,28 @@
+# ----------------------------------------------
+# Autor: Jefferson Soares
+# Contato: contato@thedataengineer.com.br
+# Descrição: Ambiente Jupyter + Spark
+# ----------------------------------------------
+
+version: '3.3' 
+services:
+
+  jupyter_tde:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: jupyter
+    volumes:        
+      - ./data:/opt/sandbox    
+    ports:      
+      - "8888:8888"      
+    networks:
+      thedataengineer:
+        ipv4_address: 192.10.0.111
+
+networks:
+  thedataengineer:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.10.0.0/24" 
